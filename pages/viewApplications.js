@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useMemo } from "react";
 import { useTable } from "react-table";
 
 // Brijesh + Evan
 
-const App = () => {
+const viewApplications = () => {
   const [data, setData] = useState([
     {
       id: 1,
@@ -63,7 +63,7 @@ const App = () => {
   } = useTable({ columns, data });
 
   return (
-    <div className="App">
+    <div className="viewApplications">
       <h1>Student Applicants</h1>
       <table {...getTableProps()} style={{ border: "solid 1px black" }}>
         <thead>
@@ -112,12 +112,5 @@ const App = () => {
     </div>
   );
 };
-
-
-function viewApplications() {
-  return (
-    <div>viewApplications</div>
-  )
-}
 
 export default viewApplications
