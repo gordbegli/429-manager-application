@@ -1,0 +1,23 @@
+.applicationForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.applicationForm label {
+    margin-top: 5px;
+}
+
+.submitFormButton {
+    padding: 10px;
+    margin-top: 2%;
+}
+
+.submitFormButton:hover {
+    cursor: pointer;
+}
