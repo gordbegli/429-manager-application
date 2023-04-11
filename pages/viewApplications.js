@@ -1,9 +1,18 @@
-import React from 'react'
-import { useTable } from "react-table";
-
 // Brijesh + Evan
 
-const App = () => {
+import React, { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+} from "@mui/material";
+
+const viewApplications = () => {
   const [data, setData] = useState([
     {
       id: 1,
@@ -28,96 +37,41 @@ const App = () => {
     },
   ]);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "ID",
-        accessor: "id",
-      },
-      {
-        Header: "Name",
-        accessor: "name",
-      },
-      {
-        Header: "Email",
-        accessor: "email",
-      },
-      {
-        Header: "Major",
-        accessor: "major",
-      },
-      {
-        Header: "GPA",
-        accessor: "gpa",
-      },
-    ],
-    []
-  );
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({ columns, data });
-
   return (
-    <div className="App">
+    <div className="viewApplications">
       <h1>Student Applicants</h1>
-      <table {...getTableProps()} style={{ border: "solid 1px black" }}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th
-                  {...column.getHeaderProps()}
-                  style={{
-                    borderBottom: "solid 3px black",
-                    background: "aliceblue",
-                    color: "black",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {column.render("Header")}
-                </th>
+      <p>
+        The table below displays information about students applying for a job,
+        including their ID, name, email, major, and GPA.
+      </p>
+      <Box sx={{ width: "100%", overflowX: "auto", margin: "0 16px" }}>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Major</TableCell>
+                <TableCell>GPA</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.email}</TableCell>
+                  <TableCell>{row.major}</TableCell>
+                  <TableCell>{row.gpa}</TableCell>
+                </TableRow>
               ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      {...cell.getCellProps()}
-                      style={{
-                        padding: "10px",
-                        border: "solid 1px gray",
-                        background: "papayawhip",
-                      }}
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     </div>
   );
 };
 
-
-function viewApplications() {
-  return (
-    <div>viewApplications</div>
-  )
-}
-
-export default viewApplications
+export default viewApplications;
