@@ -47,6 +47,30 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
+            id="email"
+            name="email"
+            label="UMass Email"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+            onChange = {handleInputChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="gpa"
+            name="gpa"
+            label="GPA"
+            fullWidth
+            autoComplete="shipping address-level2"
+            variant="standard"
+            onChange = {handleInputChange}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
             id="gpa"
             name="gpa"
             label="GPA"
