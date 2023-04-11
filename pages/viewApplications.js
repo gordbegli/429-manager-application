@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+// Brijesh + Evan
+
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,9 +9,8 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Box,
 } from "@mui/material";
-
-// Brijesh + Evan
 
 const viewApplications = () => {
   const [data, setData] = useState([
@@ -36,63 +37,41 @@ const viewApplications = () => {
     },
   ]);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "ID",
-        accessor: "id",
-      },
-      {
-        Header: "Name",
-        accessor: "name",
-      },
-      {
-        Header: "Email",
-        accessor: "email",
-      },
-      {
-        Header: "Major",
-        accessor: "major",
-      },
-      {
-        Header: "GPA",
-        accessor: "gpa",
-      },
-    ],
-    []
-  );
-
   return (
-    <div className="App">
+    <div className="viewApplications">
       <h1>Student Applicants</h1>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Major</TableCell>
-              <TableCell>GPA</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.email}</TableCell>
-                <TableCell>{row.major}</TableCell>
-                <TableCell>{row.gpa}</TableCell>
+      <p>
+        The table below displays information about students applying for a job,
+        including their ID, name, email, major, and GPA.
+      </p>
+      <Box sx={{ width: "100%", overflowX: "auto", margin: "0 16px" }}>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Email</TableCell>
+                <TableCell>Major</TableCell>
+                <TableCell>GPA</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {data.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.email}</TableCell>
+                  <TableCell>{row.major}</TableCell>
+                  <TableCell>{row.gpa}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
     </div>
   );
 };
 
-
-
-export default viewApplications
+export default viewApplications;
