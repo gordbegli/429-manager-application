@@ -11,15 +11,18 @@ import {
   Paper,
   Box,
 } from "@mui/material";
+import ApplicantDetails from "./ApplicantDetails";
 
 const viewApplications = () => {
-  const [data, setData] = useState([
+  const [applicants, setApplicants] = useState([
     {
       id: 1,
       name: "Alice",
       email: "alice@example.com",
       major: "Computer Science",
       gpa: "3.8",
+      whyRightForJob: "I have a strong background in computer science and have worked on multiple projects.",
+      whyJobRightForMe: "This job will provide me with the opportunity to further develop my skills and work on challenging projects.",
     },
     {
       id: 2,
@@ -27,6 +30,8 @@ const viewApplications = () => {
       email: "bob@example.com",
       major: "Information Systems",
       gpa: "3.6",
+      whyRightForJob: "I have experience in information systems and a passion for problem-solving.",
+      whyJobRightForMe: "The job aligns with my career goals and allows me to work with cutting-edge technologies.",
     },
     {
       id: 3,
@@ -34,6 +39,8 @@ const viewApplications = () => {
       email: "charlie@example.com",
       major: "Software Engineering",
       gpa: "3.7",
+      whyRightForJob: "I have a solid foundation in software engineering and have completed internships in the field.",
+      whyJobRightForMe: "The job will enable me to work with a talented team and contribute to meaningful projects.",
     },
   ]);
 
