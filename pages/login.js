@@ -11,6 +11,10 @@ import Box from '@material-ui/core/Box';
 import TextField from "material-ui/TextField";
 import { MuiThemeProvider } from "material-ui/styles";
 import { Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Grid, Paper, AppBar, Toolbar, IconButton } from '@mui/material';
+import styles from './login.module.css';
+import Image from 'next/image';
 
 function CustomDialog({ open, onClose, onConfirm, dialogError}) {
   const [password, setPassword] = useState('');
@@ -132,19 +136,56 @@ function login() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Button style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsStudent}>
-        Log in as Student
-      </Button>
-      <Button style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsInstructor}>
-        Log in as Instructor
-      </Button>
-      <CustomDialog
-        open = {open}
-        onClose = {handleClose}
-        onConfirm = {handleConfirm}
-        dialogError= {dialogError}
-      />
+    <div>
+      <div className = {styles.topBarContainer}>
+       <AppBar position="fixed" sx = {{backgroundColor: "#990000"}}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">UMass Amherst</Typography>
+        </Toolbar>
+      </AppBar>
+      </div>
+      <div className = { styles.imageContainer }>
+        <Image src = "/nature.jpg" alt = "background" fill = 'responsive' style = {{height: '100%', width: '100%'}}/>
+      </div>
+      <div className = { styles.gridContainer }>
+      <Grid container justify="center" alignItems="center" justifyContent = "center">
+        <Paper elevation={5} style={{ padding: '2rem' }}>
+          <Grid item>
+            <Typography variant="h6" component="h2" gutterBottom>
+              Get started by logging in!
+            </Typography>
+          </Grid>
+          <form>
+            <Grid container spacing={2} direction="column" alignItems="center" justifyContent = "center">
+              <Grid item>
+                <Button variant = "contained" color = "primary" style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsStudent}>
+                  Log in as Student
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button variant = "contained" color = "primary" style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsInstructor}>
+                  Log in as Instructor
+                </Button>
+              </Grid>
+              <CustomDialog
+                open = {open}
+                onClose = {handleClose}
+                onConfirm = {handleConfirm}
+                dialogError= {dialogError}
+              />
+              </Grid>
+            </form>
+          </Paper>
+        </Grid>
+      </div>
     </div>
   )
 }
