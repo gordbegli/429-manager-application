@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import UploadIcon from '@mui/icons-material/Upload';
+//import UploadIcon from '@mui/icons-material/Upload';
 
 function not(a, b) {
   return a.filter((value) => b.indexOf(value) === -1);
@@ -140,7 +140,8 @@ export default function TransferList() {
       </Grid>
       <Grid item>{customList(right)}</Grid>
 
-      <Button
+
+      {/* <Button
         sx={{ my: 2.0 }}
         variant="contained"
         component="label"
@@ -149,7 +150,7 @@ export default function TransferList() {
       >
         Upload Transcript
         <input hidden accept=".pdf" multiple type="file" />
-      </Button>
+      </Button> */}
     </Grid>
   );
 }

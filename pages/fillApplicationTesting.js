@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -34,9 +35,9 @@ function getStepContent(step) {
 const theme = createTheme();
 
 export default function fillApplication() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [basicInfoFormData, setBasicInfoFormData] = React.useState({});
-  const [classRankingFormData, setClassRankingFormData] = React.useState({});
+  const [activeStep, setActiveStep] = useState(0);
+  const [basicInfoFormData, setBasicInfoFormData] = useState({});
+  const [classRankingFormData, setClassRankingFormData] = useState({});
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
