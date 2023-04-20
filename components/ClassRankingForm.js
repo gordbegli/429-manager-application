@@ -17,7 +17,7 @@ function intersection(a, b) {
   return a.filter((value) => b.indexOf(value) !== -1);
 }
 
-export default function TransferList() {
+export default function TransferList({ onFormDataChange }) {
   const [checked, setChecked] = React.useState([]);
   const [left, setLeft] = React.useState([1, 2, 3, 4, 5]);
   const [right, setRight] = React.useState([]);
@@ -41,23 +41,27 @@ export default function TransferList() {
   const handleAllRight = () => {
     setRight(right.concat(left));
     setLeft([]);
+    onFormDataChange(right);
   };
 
   const handleCheckedRight = () => {
     setRight(right.concat(leftChecked));
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
+    onFormDataChange(right);
   };
 
   const handleCheckedLeft = () => {
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
+    onFormDataChange(right);
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
     setRight([]);
+    onFormDataChange(right);
   };
 
   const customList = (items) => (
@@ -139,18 +143,6 @@ export default function TransferList() {
         </Grid>
       </Grid>
       <Grid item>{customList(right)}</Grid>
-
-
-      {/* <Button
-        sx={{ my: 2.0 }}
-        variant="contained"
-        component="label"
-        size="medium"
-        endIcon={<UploadIcon />}
-      >
-        Upload Transcript
-        <input hidden accept=".pdf" multiple type="file" />
-      </Button> */}
     </Grid>
   );
 }

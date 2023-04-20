@@ -12,13 +12,14 @@ import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Button from '@mui/material/Button';
 import UploadIcon from '@mui/icons-material/Upload';
 
-export default function BasicInfoForm() {
+export default function BasicInfoForm({ onFormDataChange }) {
 
   const [formData, setFormData] = useState({});
   const [selectedYear, setSelectedYear] = useState("Select Year");
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    onFormDataChange(formData);
   };
 
   const handleYearChange = (event) => {
@@ -38,7 +39,7 @@ export default function BasicInfoForm() {
             name="firstName"
             label="First name"
             fullWidth
-            autoComplete="given-name"
+            autoComplete="first-name"
             variant="standard"
             onChange = {handleInputChange}
           />
@@ -50,7 +51,7 @@ export default function BasicInfoForm() {
             name="lastName"
             label="Last name"
             fullWidth
-            autoComplete="family-name"
+            autoComplete="last-name"
             variant="standard"
             onChange = {handleInputChange}
           />
@@ -62,7 +63,7 @@ export default function BasicInfoForm() {
             name="email"
             label="UMass Email"
             fullWidth
-            autoComplete="shipping address-level2"
+            autoComplete="email"
             variant="standard"
             onChange = {handleInputChange}
           />
@@ -74,7 +75,7 @@ export default function BasicInfoForm() {
             name="gpa"
             label="GPA"
             fullWidth
-            autoComplete="shipping address-level2"
+            autoComplete="gpa"
             variant="standard"
             onChange = {handleInputChange}
           />
