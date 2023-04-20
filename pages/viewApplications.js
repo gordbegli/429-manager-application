@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
@@ -9,10 +10,28 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Box,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Container,
+  Typography,
 } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MenuIcon from "@mui/icons-material/Menu";
 import ApplicantDetails from "./ApplicantDetails";
 import { useRouter } from "next/router";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#990000", // UMass Red
+    },
+    background: {
+      default: "#ffffff",
+    },
+  },
+});
+
 
 const viewApplications = () => {
   const router = useRouter()
@@ -51,39 +70,50 @@ const viewApplications = () => {
   };
 
   return (
-    <div className="viewApplications">
-      <h1>Student Applicants</h1>
-      <p>
-        The table below displays information about students applying for a job,
-        including their ID, name, email, major, and GPA.
-      </p>
-      <Box sx={{ width: "100%", overflowX: "auto", margin: "0 16px" }}>
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Major</TableCell>
-                <TableCell>GPA</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {applicants.map((row) => (
-                <TableRow key={row.id} onClick={() => handleRowClick(row)}>
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell>{row.email}</TableCell>
-                  <TableCell>{row.major}</TableCell>
-                  <TableCell>{row.gpa}</TableCell>
+    <ThemeProvider theme={theme}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">UMass Amherst</Typography>
+        </Toolbar>
+      </AppBar>
+      <Container>
+        <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
+          <Typography variant="h2">Applicants</Typography>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Major</TableCell>
+                  <TableCell>GPA</TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </div>
+              </TableHead>
+              <TableBody>
+                {applicants.map((row) => (
+                  <TableRow key={row.id} onClick={() => handleRowClick(row)}>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.major}</TableCell>
+                    <TableCell>{row.gpa}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Container>
+    </ThemeProvider>
   );
 };
 
