@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useRouter } from 'next/router'
 import {
   Container,
   Typography,
@@ -27,9 +27,10 @@ const theme = createTheme({
 });
 
 const ApplicantDetails = ({ applicants }) => {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query
   const applicant = {
-    id: 1,
+    id: id,
     name: "Alice",
     email: "alice@example.com",
     major: "Computer Science",

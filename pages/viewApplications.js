@@ -66,7 +66,7 @@ const viewApplications = () => {
   ]);
 
   const handleRowClick = (applicant) => {
-    router.push(`./application/${applicant.id}`);
+    router.push(`./ApplicantDetails?id=${applicant.id}`);
   };
 
   return (
