@@ -1,21 +1,35 @@
 import * as React from 'react';
 import { useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
+import {
+  CssBaseline,
+  AppBar,
+  Box,
+  Container,
+  Toolbar,
+  Paper,
+  Stepper,
+  Step,
+  StepLabel,
+  Button,
+  Typography,
+  IconButton
+} from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MenuIcon from "@mui/icons-material/Menu";
 import BasicInfoForm from '../components/BasicInfoForm';
 import ClassRankingForm from '../components/ClassRankingForm';
 import Review from '../components/Review';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#990000", // UMass Red
+    },
+    background: {
+      default: "#ffffff",
+    },
+  },
+});
 
 const steps = ['Basic Info', 'Class Ranking', 'Review'];
 
@@ -31,8 +45,6 @@ function getStepContent(step) {
       throw new Error('Unknown step');
   }
 }
-
-const theme = createTheme();
 
 export default function fillApplication() {
   const [activeStep, setActiveStep] = useState(0);
@@ -50,19 +62,17 @@ export default function fillApplication() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar
-        position="absolute"
-        color="default"
-        elevation={0}
-        sx={{
-          position: 'relative',
-          borderBottom: (t) => `1px solid ${t.palette.divider}`,
-        }}
-      >
+      <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            429 Application
-          </Typography>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">UMass Amherst</Typography>
         </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
