@@ -32,9 +32,6 @@ const theme = createTheme({
   },
 });
 
-const handleRowClick = (applicant) => {
-  router.push(`./application/${applicant.id}`);
-};
 
 const viewApplications = () => {
   const router = useRouter()
@@ -102,13 +99,13 @@ const viewApplications = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {applicants.map((applicant) => (
-                  <TableRow key={applicant.id} onClick={() => handleRowClick(row)}>
-                    <TableCell>{applicant.id}</TableCell>
-                    <TableCell>{applicant.name}</TableCell>
-                    <TableCell>{applicant.email}</TableCell>
-                    <TableCell>{applicant.major}</TableCell>
-                    <TableCell>{applicant.gpa}</TableCell>
+                {applicants.map((row) => (
+                  <TableRow key={row.id} onClick={() => handleRowClick(row)}>
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.email}</TableCell>
+                    <TableCell>{row.major}</TableCell>
+                    <TableCell>{row.gpa}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
