@@ -64,7 +64,7 @@ const viewApplications = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
+              {applicants.map((row) => (
                 <TableRow key={row.id}>
                   <TableCell>{row.id}</TableCell>
                   <TableCell>{row.name}</TableCell>
