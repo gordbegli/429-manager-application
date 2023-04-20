@@ -12,8 +12,10 @@ import {
   Box,
 } from "@mui/material";
 import ApplicantDetails from "./ApplicantDetails";
+import { useRouter } from "next/router";
 
 const viewApplications = () => {
+  const router = useRouter()
   const [applicants, setApplicants] = useState([
     {
       id: 1,
@@ -44,6 +46,10 @@ const viewApplications = () => {
     },
   ]);
 
+  const handleRowClick = (applicant) => {
+    router.push(`./application/${applicant.id}`);
+  };
+
   return (
     <div className="viewApplications">
       <h1>Student Applicants</h1>
@@ -64,8 +70,8 @@ const viewApplications = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
-                <TableRow key={row.id}>
+              {applicants.map((row) => (
+                <TableRow key={row.id} onClick={() => handleRowClick(row)}>
                   <TableCell>{row.id}</TableCell>
                   <TableCell>{row.name}</TableCell>
                   <TableCell>{row.email}</TableCell>
