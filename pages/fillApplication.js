@@ -20,6 +20,22 @@ import MenuIcon from "@mui/icons-material/Menu";
 import BasicInfoForm from '../components/BasicInfoForm';
 import ClassRankingForm from '../components/ClassRankingForm';
 import Review from '../components/Review';
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
+//Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyC0AzLHh3DTJE-a8X_g3hRw5yiIlt4a-xI",
+  authDomain: "manager-project-test.firebaseapp.com",
+  projectId: "manager-project-test",
+  storageBucket: "manager-project-test.appspot.com",
+  messagingSenderId: "819743335708",
+  appId: "1:819743335708:web:8ae32ea4c0b14089b006d9",
+  measurementId: "G-BEDYS7M6VS"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 
 const steps = ['Basic Info', 'Class Ranking', 'Review'];
 
@@ -40,6 +56,7 @@ export default function fillApplication() {
   const [classRankingFormData, setClassRankingFormData] = useState([]);
 
   const handleBasicFormData = (data) => {
+    console.log(data);
     setBasicInfoFormData(data);
   }
 
@@ -60,8 +77,28 @@ export default function fillApplication() {
     }
   }
 
-  const handleNext = () => {
-    setActiveStep(activeStep + 1);
+  const handleNext = async () => {
+    //If we are on the last step, then we want to submit the form
+    if (activeStep == steps.length-1) {
+      //Format application data and upload it to Firestore
+      //Still need to check that user actually filled out required fields
+      const docData = {
+        email: basicInfoFormData.email,
+        firstName: basicInfoFormData.firstName,
+        lastName: basicInfoFormData.lastName,
+        gpa: basicInfoFormData.gpa,
+        year: "", //Still need to get this working with the dropdown in BasicInfoForm
+        transcriptURL: "", //Still need to get this working as well
+        whyInterested: basicInfoFormData.whyInterested,
+        rankings: classRankingFormData,
+      }
+      //Test is currently the document name, will need a naming scheme for docs
+      await setDoc(doc(db, "studentApplications", "test"), docData);
+    }
+    //Otherwise, we just want to move to the next step
+    else {
+      setActiveStep(activeStep + 1);
+    }
     console.log(basicInfoFormData);
     console.log(classRankingFormData);
   };

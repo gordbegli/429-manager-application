@@ -15,15 +15,10 @@ import UploadIcon from '@mui/icons-material/Upload';
 export default function BasicInfoForm({ onFormDataChange }) {
 
   const [formData, setFormData] = useState({});
-  const [selectedYear, setSelectedYear] = useState("Select Year");
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
     onFormDataChange(formData);
-  };
-
-  const handleYearChange = (event) => {
-    setSelectedYear(event.target.value);
   };
 
   return (
@@ -41,7 +36,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="first-name"
             variant="standard"
-            onChange = {handleInputChange}
+            onChange = {event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -53,7 +48,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="last-name"
             variant="standard"
-            onChange = {handleInputChange}
+            onChange = {event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -65,7 +60,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="email"
             variant="standard"
-            onChange = {handleInputChange}
+            onChange = {event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -77,7 +72,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="gpa"
             variant="standard"
-            onChange = {handleInputChange}
+            onChange = {e => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -88,6 +83,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             label="Year"
             defaultValue="Select Year"
             style={{ width: '100%' }}
+            onChange={event => handleInputChange(event)}
           >
             <MenuItem value="Select Year">Select Year</MenuItem>
             <MenuItem value="Freshman">Freshman</MenuItem>
@@ -111,12 +107,13 @@ export default function BasicInfoForm({ onFormDataChange }) {
         </Grid>
         <Grid item xs={12}>
           <TextareaAutosize
+            name="whyInterested"
             aria-label="minimum height"
             minRows={5}
             style={{ width: '100%', marginTop: '20px', marginBottom: '20px' }}
             placeholder="Why are you interested in taking 429?"
             variant="standard"
-            onChange = {handleInputChange}
+            onChange = {event => handleInputChange(event)}
           />
         </Grid>
       </Grid>
