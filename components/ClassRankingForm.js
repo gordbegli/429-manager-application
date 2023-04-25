@@ -40,27 +40,27 @@ export default function TransferList({ onFormDataChange }) {
   const handleAllRight = () => {
     setRight(right.concat(left));
     setLeft([]);
-    onFormDataChange(right);
+    onFormDataChange(right.concat(left));
   };
 
   const handleCheckedRight = () => {
     setRight(right.concat(leftChecked));
     setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
-    onFormDataChange(right);
+    onFormDataChange(right.concat(leftChecked));
   };
 
   const handleCheckedLeft = () => {
     setLeft(left.concat(rightChecked));
     setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
-    onFormDataChange(right);
+    onFormDataChange(not(right, rightChecked));
   };
 
   const handleAllLeft = () => {
     setLeft(left.concat(right));
     setRight([]);
-    onFormDataChange(right);
+    onFormDataChange([]);
   };
 
   const customList = (items) => (

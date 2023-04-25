@@ -62,14 +62,15 @@ export default function fillApplication() {
 
   const handleClassRankingData = (data) => {
     setClassRankingFormData(data);
+    console.log(data);
   }
 
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <BasicInfoForm onFormDataChange={handleBasicFormData}/>;
+        return <BasicInfoForm onFormDataChange={handleBasicFormData} />;
       case 1:
-        return <ClassRankingForm onFormDataChange={handleClassRankingData}/>;
+        return <ClassRankingForm onFormDataChange={handleClassRankingData} />;
       case 2:
         return <Review />;
       default:
@@ -79,7 +80,7 @@ export default function fillApplication() {
 
   const handleNext = async () => {
     //If we are on the last step, then we want to submit the form
-    if (activeStep == steps.length-1) {
+    if (activeStep == steps.length - 1) {
       //Format application data and upload it to Firestore
       //Still need to check that user actually filled out required fields
       const docData = {
