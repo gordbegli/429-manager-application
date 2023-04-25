@@ -21,11 +21,10 @@ export default function BasicInfoForm({ onFormDataChange }) {
     onFormDataChange({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event) => { 
     const file = event.target.files[0];
     setFormData({...formData, filePath: URL.createObjectURL(file)});
     onFormDataChange({...formData, filePath: URL.createObjectURL(file)});
-    console.log(formData);
   }
 
   return (
@@ -87,6 +86,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
           <Select
             labelId="year-select-label"
             id="year-select"
+            name="year"
             label="Year"
             defaultValue="Select Year"
             style={{ width: '100%' }}
