@@ -14,12 +14,15 @@ import UploadIcon from '@mui/icons-material/Upload';
 
 export default function BasicInfoForm({ onFormDataChange }) {
 
-  const [formData, setFormData] = useState({});
-
   const handleInputChange = (event) => {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-    onFormDataChange(formData);
+    onFormDataChange({ ...formData, [event.target.name]: event.target.value });
   };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    onFormDataChange({...formData, filePath: URL.createObjectURL(file)});
+    console.log(formData);
+  }
 
   return (
     <React.Fragment>
@@ -100,6 +103,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
           component="label"
           size="medium"
           endIcon={<UploadIcon />}
+          onChange={event => handleFileChange(event)}
         >
           Upload Transcript
           <input hidden accept=".pdf" multiple type="file" />
