@@ -75,7 +75,7 @@ export default function fillApplication() {
       case 1:
         return <ClassRankingForm onFormDataChange={handleClassRankingData} />;
       case 2:
-        return <Review />;
+        return <Review basicInfoFormData={basicInfoFormData} rankingFormData={classRankingFormData} />;
       default:
         throw new Error('Unknown step');
     }
