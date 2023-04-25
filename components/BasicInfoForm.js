@@ -14,12 +14,16 @@ import UploadIcon from '@mui/icons-material/Upload';
 
 export default function BasicInfoForm({ onFormDataChange }) {
 
+  const [formData, setFormData] = useState({});
+
   const handleInputChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value })
     onFormDataChange({ ...formData, [event.target.name]: event.target.value });
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    setFormData({...formData, filePath: URL.createObjectURL(file)});
     onFormDataChange({...formData, filePath: URL.createObjectURL(file)});
     console.log(formData);
   }
