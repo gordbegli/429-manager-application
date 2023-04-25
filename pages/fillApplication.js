@@ -22,6 +22,7 @@ import ClassRankingForm from '../components/ClassRankingForm';
 import Review from '../components/Review';
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
 
 //Firebase configuration
 const firebaseConfig = {
@@ -36,6 +37,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//Firebase storage configuration (for transcript files)
+const storage = getStorage(app);
 
 const steps = ['Basic Info', 'Class Ranking', 'Review'];
 
@@ -83,12 +86,18 @@ export default function fillApplication() {
     if (activeStep == steps.length - 1) {
       //Format application data and upload it to Firestore
       //Still need to check that user actually filled out required fields
+      //First, need to extract URL from transcript file and upload it to cloud storage
+      const storageRef = ref(storage, 'studentTranscripts/' + basicInfoFormData.email + '.pdf');
+      uploadBytes(storageRef, basicInfoFormData.transcriptFile).then((snapshot) => {
+        console.log("Uploaded transcript");
+      });
+      //Then, need to upload the rest of the application data to Firestore
       const docData = {
         email: basicInfoFormData.email,
         firstName: basicInfoFormData.firstName,
         lastName: basicInfoFormData.lastName,
         gpa: basicInfoFormData.gpa,
-        year: "", //Still need to get this working with the dropdown in BasicInfoForm
+        year: basicInfoFormData.year, //Still need to get this working with the dropdown in BasicInfoForm
         transcriptURL: "", //Still need to get this working as well
         whyInterested: basicInfoFormData.whyInterested,
         rankings: classRankingFormData,
