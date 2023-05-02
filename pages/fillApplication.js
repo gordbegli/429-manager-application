@@ -22,7 +22,7 @@ import ClassRankingForm from '../components/ClassRankingForm';
 import Review from '../components/Review';
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 //Firebase configuration
 const firebaseConfig = {
@@ -91,14 +91,15 @@ export default function fillApplication() {
       uploadBytes(storageRef, basicInfoFormData.transcriptFile).then((snapshot) => {
         console.log("Uploaded transcript");
       });
+      const cloudTranscriptURL = await getDownloadURL(storageRef, {});
       //Then, need to upload the rest of the application data to Firestore
       const docData = {
         email: basicInfoFormData.email,
         firstName: basicInfoFormData.firstName,
         lastName: basicInfoFormData.lastName,
         gpa: basicInfoFormData.gpa,
-        year: basicInfoFormData.year, //Still need to get this working with the dropdown in BasicInfoForm
-        transcriptURL: "", //Still need to get this working as well
+        year: basicInfoFormData.year,
+        transcriptURL: cloudTranscriptURL, //Still need to get this working as well
         whyInterested: basicInfoFormData.whyInterested,
         rankings: classRankingFormData,
       }
