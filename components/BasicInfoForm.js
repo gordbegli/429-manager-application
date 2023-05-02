@@ -21,10 +21,10 @@ export default function BasicInfoForm({ onFormDataChange }) {
     onFormDataChange({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleFileChange = (event) => { 
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setFormData({...formData, filePath: URL.createObjectURL(file)});
-    onFormDataChange({...formData, filePath: URL.createObjectURL(file)});
+    setFormData({ ...formData, filePath: URL.createObjectURL(file) });
+    onFormDataChange({ ...formData, filePath: URL.createObjectURL(file) });
   }
 
   return (
@@ -42,7 +42,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="first-name"
             variant="standard"
-            onChange = {event => handleInputChange(event)}
+            onChange={event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -54,7 +54,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="last-name"
             variant="standard"
-            onChange = {event => handleInputChange(event)}
+            onChange={event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -66,7 +66,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="email"
             variant="standard"
-            onChange = {event => handleInputChange(event)}
+            onChange={event => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -78,7 +78,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             fullWidth
             autoComplete="gpa"
             variant="standard"
-            onChange = {e => handleInputChange(event)}
+            onChange={e => handleInputChange(event)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -101,16 +101,16 @@ export default function BasicInfoForm({ onFormDataChange }) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Button
-          sx={{ my: 3.5 }}
-          style={{ width: '100%', height: '50%' }}
-          variant="contained"
-          component="label"
-          size="medium"
-          endIcon={<UploadIcon />}
-          onChange={event => handleFileChange(event)}
-        >
-          Upload Transcript
-          <input hidden accept=".pdf" multiple type="file" />
+            sx={{ my: 3.5 }}
+            style={{ width: '100%', height: '50%' }}
+            variant="contained"
+            component="label"
+            size="medium"
+            endIcon={<UploadIcon />}
+            onChange={event => handleFileChange(event)}
+          >
+            Upload Transcript
+            <input hidden accept=".pdf" multiple type="file" />
           </Button>
         </Grid>
         <Grid item xs={12}>
@@ -121,7 +121,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             style={{ width: '100%', marginTop: '20px', marginBottom: '20px' }}
             placeholder="Why are you interested in taking 429?"
             variant="standard"
-            onChange = {event => handleInputChange(event)}
+            onChange={event => handleInputChange(event)}
           />
         </Grid>
       </Grid>
