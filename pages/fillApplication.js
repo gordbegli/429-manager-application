@@ -99,12 +99,14 @@ export default function fillApplication() {
         lastName: basicInfoFormData.lastName,
         gpa: basicInfoFormData.gpa,
         year: basicInfoFormData.year,
-        transcriptURL: cloudTranscriptURL, //Still need to get this working as well
+        transcriptURL: cloudTranscriptURL,
         whyInterested: basicInfoFormData.whyInterested,
         rankings: classRankingFormData,
       }
-      //Test is currently the document name, will need a naming scheme for docs
-      await setDoc(doc(db, "studentApplications", "test"), docData);
+      //Set the document name to the student's email and upload the data
+      //Still need to check if the document already exists
+      const docName = basicInfoFormData.email;
+      await setDoc(doc(db, "studentApplications", docName), docData);
     }
     //Otherwise, we just want to move to the next step
     else {
