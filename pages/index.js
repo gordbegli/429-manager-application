@@ -23,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>Welcome to 429 Manager App</h1>
+        <h1>Give group Wang an A+</h1>
       </div>
     </>
   )
