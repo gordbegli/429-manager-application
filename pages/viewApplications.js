@@ -20,6 +20,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ApplicantDetails from "./ApplicantDetails";
 import { useRouter } from "next/router";
+import database from "./firebase";
+import { ref, onValue } from "firebase/database";
 
 import Header from "../components/Header"
 
@@ -34,6 +36,46 @@ const theme = createTheme({
   },
 });
 
+async function getServerSideProps() {
+  const ref = database.ref('/studentApplications');
+
+  try {
+    const snapshot = await ref.once('value');
+    const data = snapshot.val();
+
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {},
+    };
+  }
+}
+/*
+const fetchApplicants = async () => {
+  return new Promise((resolve, reject) => {
+    const applicantsRef = ref(database, "/studentApplications");
+    onValue(
+      applicantsRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        // Create applicants array
+        const applicants = Object.keys(data).map((key) => ({
+          id: key,
+          ...data[key],
+        }));
+        resolve(applicants);
+      },
+      (error) => {
+        reject(error);
+      }
+    );
+  });
+};
+*/
 
 const viewApplications = () => {
   const router = useRouter()
@@ -42,7 +84,8 @@ const viewApplications = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchApplicants();
+        console.log("here")
+        const data = await getServerSideProps();
         setApplicants(data);
       } catch (error) {
         console.error("Error fetching applicants data:", error);
