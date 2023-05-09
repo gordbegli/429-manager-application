@@ -11,6 +11,8 @@ import {
 } from "@mui/material";
 import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
 import DrawerComp from "./Drawer";
+import { BrowserRouter, Link } from 'react-router-dom';
+
 const Header = () => {
   const [value, setValue] = useState();
   const theme = useTheme();
@@ -39,10 +41,9 @@ const Header = () => {
                 value={value}
                 onChange={(e, value) => setValue(value)}
               >
-                <Tab label="Products" />
-                <Tab label="Services" />
-                <Tab label="About Us" />
-                <Tab label="Contact" />
+                <Tab label="All Applications"/>
+                <Tab label="Accepted Applications"/>
+                <Tab label="Pending Applications"/>
               </Tabs>
               {/* <Button sx={{ marginLeft: "auto" }} variant="contained">
                 Login
