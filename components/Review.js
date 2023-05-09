@@ -35,7 +35,7 @@ export default function Review({ basicInfoFormData, rankingFormData }) {
             Why you are interested: {basicInfoFormData.whyInterested}
           </Grid>
           <Grid item xs={12} style={{ marginLeft: '15px' }}>
-            Ranking: {rankingFormData[0]} {rankingFormData[1]}
+            Ranking: {rankingFormData.map(section => section).join(', ')}
           </Grid>
         </Grid>
       </Paper>
