@@ -92,6 +92,7 @@ function login() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [dialogError, setdialogError] = useState(false);
+  const [alert, setAlert] = useState(false);
   const handleGoogleLoginAsStudent = () => {
   
     const provider = new GoogleAuthProvider();
@@ -99,6 +100,10 @@ function login() {
     .then((result) => {
       if (result.user.email.endsWith('umass.edu')) {
         router.push('/fillApplication');
+        setAlert(false);
+      }
+      else {
+        setAlert(true);
       }
     })
     .catch((error) => {
@@ -114,6 +119,9 @@ function login() {
       if (result.user.email.endsWith('umass.edu')) {
         setOpen(true);
       }
+      else {
+        setAlert(true);
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -123,6 +131,10 @@ function login() {
   const handleClose = () => {
     setOpen(false);
     setdialogError(false);
+  }
+
+  const handleAlertClose = () => {
+    setAlert(false);
   }
 
   const handleConfirm = (password) => {
@@ -169,6 +181,10 @@ function login() {
                 <Button variant = "contained" color = "primary" style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsStudent}>
                   Log in as Student
                 </Button>
+                {alert && (
+              <Alert severity="warning" onClose={handleAlertClose}>
+                You need to log in with a umass.edu email.
+              </Alert>)}
               </Grid>
               <Grid item>
                 <Button variant = "contained" color = "primary" style = {{margin: '0.5rem'}} onClick = {handleGoogleLoginAsInstructor}>
