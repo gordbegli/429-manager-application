@@ -106,6 +106,14 @@ export default function fillApplication() {
       //Set the document name to the student's email and upload the data
       //Still need to check if the document already exists
       const docName = basicInfoFormData.email;
+      //Check if any of the fields are empty, if they are, we want to inform the user
+      for (const key in docData) {
+        if (docData[key] == "") {
+          alert("Error: Please fill out all required fields");
+          return;
+        }
+      }
+      //If all fields are filled out, we can send the data to firebase
       await setDoc(doc(db, "studentApplications", docName), docData);
     }
     //Otherwise, we just want to move to the next step
