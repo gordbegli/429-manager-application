@@ -1,40 +1,61 @@
-import React from "react";
-import { useRouter } from 'next/router'
+import React, { useState } from "react";
 import {
-  Container,
-  Typography,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Paper,
   AppBar,
+  Button,
+  Tab,
+  Tabs,
   Toolbar,
-  IconButton,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import MenuIcon from "@mui/icons-material/Menu";
-
+import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
+import DrawerComp from "./Drawer";
 const Header = () => {
+  const [value, setValue] = useState();
+  const theme = useTheme();
+  console.log(theme);
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  console.log(isMatch);
 
-    return (
-        <React.Fragment>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6">UMass Amherst</Typography>
-                </Toolbar>
-            </AppBar>
-        </React.Fragment>
-
-    );
+  return (
+    <React.Fragment>
+      <AppBar sx={{ background: "#881c1c" }}>
+        <Toolbar>
+          <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} />
+          {isMatch ? (
+            <>
+              <Typography sx={{ fontSize: "2rem", paddingLeft: "10%" }}>
+                CS429 Manager Application
+              </Typography>
+              <DrawerComp />
+            </>
+          ) : (
+            <>
+              <Tabs
+                sx={{ marginLeft: "50px" }}
+                indicatorColor="secondary"
+                textColor="inherit"
+                value={value}
+                onChange={(e, value) => setValue(value)}
+              >
+                <Tab label="Products" />
+                <Tab label="Services" />
+                <Tab label="About Us" />
+                <Tab label="Contact" />
+              </Tabs>
+              {/* <Button sx={{ marginLeft: "auto" }} variant="contained">
+                Login
+              </Button>
+              <Button sx={{ marginLeft: "10px" }} variant="contained">
+                SignUp
+              </Button> */}
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </React.Fragment>
+  );
 };
 
 export default Header;
