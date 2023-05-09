@@ -20,7 +20,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ApplicantDetails from "./ApplicantDetails";
 import { useRouter } from "next/router";
-import { fetchApplicants } from "./api/viewAppsApi.js";
 
 const theme = createTheme({
   palette: {
