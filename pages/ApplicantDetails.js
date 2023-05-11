@@ -15,6 +15,8 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 
+import Header from "../components/Header"
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -47,19 +49,7 @@ const ApplicantDetails = ({ applicants }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">UMass Amherst</Typography>
-        </Toolbar>
-      </AppBar>
+      <Header></Header>
       <Container>
         <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
           <Typography variant="h1">{applicant.name}</Typography>
