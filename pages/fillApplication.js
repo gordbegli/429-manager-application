@@ -104,7 +104,6 @@ export default function fillApplication() {
         rankings: classRankingFormData,
       }
       //Set the document name to the student's email and upload the data
-      //Still need to check if the document already exists
       const docName = basicInfoFormData.email;
       //Check if any of the fields are empty, if they are, we want to inform the user
       for (const key in docData) {
@@ -120,8 +119,6 @@ export default function fillApplication() {
     else {
       setActiveStep(activeStep + 1);
     }
-    console.log(basicInfoFormData);
-    console.log(classRankingFormData);
   };
 
   const handleBack = () => {
