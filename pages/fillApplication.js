@@ -45,13 +45,13 @@ const steps = ['Basic Info', 'Class Ranking', 'Review'];
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#990000", // UMass Red
+      main: "#990000" // UMass Red
     },
     secondary: {
-      main: "#009900", // Green
+      main: "#009900" // Green
     },
     background: {
-      default: "#ffffff",
+      default: "#ffffff"
     },
   },
 });
@@ -143,7 +143,11 @@ export default function fillApplication() {
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step key={label} sx={{
+                '& .MuiStepLabel-root .Mui-completed': {
+                  color: 'secondary.dark', // circle color (COMPLETED)
+                }
+              }}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
