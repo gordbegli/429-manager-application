@@ -19,7 +19,11 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ApplicantDetails from "./ApplicantDetails";
+import database from "./firebase";
+import { ref, onValue, child } from "firebase/database";
 import { useRouter } from "next/router";
+
+import Header from "../components/Header"
 
 const theme = createTheme({
   palette: {
@@ -31,6 +35,25 @@ const theme = createTheme({
     },
   },
 });
+
+const fetchApplicants = async () => {
+  return new Promise((resolve, reject) => {
+    const applicantsRef = ref(database, "studentApplications");
+    onValue(
+      applicantsRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        const applicants = Object.keys(data).map((key) => ({
+
+        }));
+        resolve(applicants);
+      },
+      (error) => {
+        reject(error);
+      }
+    );
+  });
+};
 
 
 const viewApplications = () => {
@@ -56,19 +79,7 @@ const viewApplications = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">UMass Amherst</Typography>
-        </Toolbar>
-      </AppBar>
+      <Header/>
       <Container>
         <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
           <Typography variant="h2">Applicants</Typography>
