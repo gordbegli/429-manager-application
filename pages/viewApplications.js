@@ -17,10 +17,6 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import MenuIcon from "@mui/icons-material/Menu";
-import ApplicantDetails from "./ApplicantDetails";
-import database from "./firebase";
-import { ref, onValue, child } from "firebase/database";
 import database from "./firebase";
 import { ref, onValue, child } from "firebase/database";
 import { useRouter } from "next/router";
