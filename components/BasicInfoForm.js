@@ -15,6 +15,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 export default function BasicInfoForm({ onFormDataChange }) {
 
   const [formData, setFormData] = useState({});
+  const [uploaded, setUploaded] = useState(false)
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -25,6 +26,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
     const file = event.target.files[0];
     setFormData({ ...formData, filePath: URL.createObjectURL(file) });
     onFormDataChange({ ...formData, filePath: URL.createObjectURL(file) });
+    setUploaded(true);
   }
 
   return (
@@ -91,6 +93,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             defaultValue="Select Year"
             style={{ width: '100%' }}
             onChange={event => handleInputChange(event)}
+
           >
             <MenuItem value="Select Year">Select Year</MenuItem>
             <MenuItem value="Freshman">Freshman</MenuItem>
@@ -108,6 +111,7 @@ export default function BasicInfoForm({ onFormDataChange }) {
             size="medium"
             endIcon={<UploadIcon />}
             onChange={event => handleFileChange(event)}
+            color={uploaded ? "secondary" : "primary"}
           >
             Upload Transcript
             <input hidden accept=".pdf" multiple type="file" />
