@@ -15,6 +15,7 @@ import {
   IconButton,
   Container,
   Typography,
+  Button
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import database from "./firebase";
@@ -74,6 +75,14 @@ const theme = createTheme({
       router.push(`./ApplicantDetails?id=${applicant.id}`);
     };
 
+    const handleAccept = (applicant) => {
+      console.log("Test");
+    }
+
+    const handleReject = (applicant) => {
+      console.log("Test");
+    }
+
   return (
     <ThemeProvider theme={theme}>
       <Header/>
@@ -99,6 +108,10 @@ const theme = createTheme({
                     <TableCell>{row.email}</TableCell>
                     <TableCell>{row.major}</TableCell>
                     <TableCell>{row.gpa}</TableCell>
+                    <TableCell>
+                      <Button variant="contained" color="success" onClick={() => handleAccept(row)}>Accept</Button>
+                      <Button variant="contained" color="error" onClick={() => handleReject(row)}>Reject</Button>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

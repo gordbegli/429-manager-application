@@ -23,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1>Give group Wang an A+</h1>
+        <h1>Loading...</h1>
       </div>
     </>
   )
