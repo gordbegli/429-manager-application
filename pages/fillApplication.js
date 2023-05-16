@@ -45,10 +45,13 @@ const steps = ['Basic Info', 'Class Ranking', 'Review'];
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#990000", // UMass Red
+      main: "#990000" // UMass Red
+    },
+    secondary: {
+      main: "#009900" // Green
     },
     background: {
-      default: "#ffffff",
+      default: "#ffffff"
     },
   },
 });
@@ -104,16 +107,21 @@ export default function fillApplication() {
         rankings: classRankingFormData,
       }
       //Set the document name to the student's email and upload the data
-      //Still need to check if the document already exists
       const docName = basicInfoFormData.email;
+      //Check if any of the fields are empty, if they are, we want to inform the user
+      for (const key in docData) {
+        if (docData[key] == "") {
+          alert("Error: Please fill out all required fields");
+          return;
+        }
+      }
+      //If all fields are filled out, we can send the data to firebase
       await setDoc(doc(db, "studentApplications", docName), docData);
     }
     //Otherwise, we just want to move to the next step
     else {
       setActiveStep(activeStep + 1);
     }
-    console.log(basicInfoFormData);
-    console.log(classRankingFormData);
   };
 
   const handleBack = () => {
@@ -125,14 +133,6 @@ export default function fillApplication() {
       <CssBaseline />
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6">UMass Amherst</Typography>
         </Toolbar>
       </AppBar>
@@ -143,7 +143,11 @@ export default function fillApplication() {
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step key={label} sx={{
+                '& .MuiStepLabel-root .Mui-completed': {
+                  color: 'secondary.dark', // circle color (COMPLETED)
+                }
+              }}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}

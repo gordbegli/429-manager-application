@@ -29,9 +29,6 @@ export default function Review({ basicInfoFormData, rankingFormData }) {
         </Grid>
         <Grid container spacing={10} style={{ 'word-wrap': 'break-word', width: '110%' }}>
           <Grid item xs={12} style={{ marginLeft: '15px', marginTop: '15px' }}>
-            Transcript: {basicInfoFormData.filePath}
-          </Grid>
-          <Grid item xs={12} style={{ marginLeft: '15px' }}>
             Why you are interested: {basicInfoFormData.whyInterested}
           </Grid>
           <Grid item xs={12} style={{ marginLeft: '15px' }}>
