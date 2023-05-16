@@ -102,12 +102,12 @@ const theme = createTheme({
               </TableHead>
               <TableBody>
                 {applicants.map((row) => (
-                  <TableRow key={row.id} onClick={() => handleRowClick(row)}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.major}</TableCell>
-                    <TableCell>{row.gpa}</TableCell>
+                  <TableRow key={row.id}>
+                    <TableCell onClick={() => handleRowClick(row)}>{row.id}</TableCell>
+                    <TableCell onClick={() => handleRowClick(row)}>{row.name}</TableCell>
+                    <TableCell onClick={() => handleRowClick(row)}>{row.email}</TableCell>
+                    <TableCell onClick={() => handleRowClick(row)}>{row.major}</TableCell>
+                    <TableCell onClick={() => handleRowClick(row)}>{row.gpa}</TableCell>
                     <TableCell>
                       <Button variant="contained" color="success" onClick={() => handleAccept(row)}>Accept</Button>
                       <Button variant="contained" color="error" onClick={() => handleReject(row)}>Reject</Button>
