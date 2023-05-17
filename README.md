@@ -1,39 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 429 Manager Application
 
-## Getting Started
+This repository contains the code for a web application that helps streamline the student application process for the CS429 class
+at UMass Amherst. The application uses NextJS on the frontend, and it uses Firebase to handle logins and to store data.
 
-First, run the development server:
+## Code and File Structure
+The code structure follows a standard NextJS file structure, and it was created with create-next-app. The most important folders
+are the components folder and the pages folder. The pages folder contains each page in the application as its own file. Since
+NextJS has automatic routing, each name in the pages folder is a route to the corresponding page. So for example, the route
+/login will take you to the login page, which is stored in login.js in the pages folder. The components folder contains React
+components that are used by the pages in the pages folder.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The main pages are login.js, fillApplication.js, and viewApplications.js. The login page simply allows you to login as a student
+or a professor using a Google account. If you login as a professor, you will be redirected to the View Applications page, which
+allows you to review applicants and accept/reject them. If you login as a student, you will be redirected to the Fill Application
+page, which allows you to apply for 429 sections
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to run
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+First, you will need to make sure you have all the necessary packages by running `npm install`. Once all the packages are
+installed, you can run the web app locally by running `npm run dev` and going to [localhost:3000](http://localhost:3000). This
+will bring you to the login page where you can begin using the application.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# 429-manager-application
+## Github Repo
+The github repo can be found at: https://github.com/gabrielgordbegli/429-manager-application/tree/main/pages
