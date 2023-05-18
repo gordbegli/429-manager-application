@@ -72,6 +72,7 @@ const ApplicantDetails = () => {
       const applicantData = applicants.find(applicant => applicant.id === id);
       setApplicant(applicantData);
     }
+    
   }, [applicants, id]);
 
   return (
@@ -79,29 +80,30 @@ const ApplicantDetails = () => {
       <Header></Header>
       <Container>
         <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
-          <Typography variant="h1">{applicant ? applicant.name: 'Loading...'}</Typography>
           <Typography variant="h2">Applicant Details</Typography>
           <List>
             <ListItem>
               <ListItemText primary="ID" secondary={applicant ? applicant.id: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Name" secondary={applicant ? applicant.name: 'Loading...'} />
+              <ListItemText primary="Name" secondary={applicant ? applicant.firstName + " " + applicant.lastName: 'Loading...'} />
             </ListItem>
             <ListItem>
               <ListItemText primary="Email" secondary={applicant ? applicant.email: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Major" secondary={applicant ? applicant.major: 'Loading...'} />
+              <ListItemText primary="Year" secondary={applicant ? applicant.year: 'Loading...'} />
             </ListItem>
             <ListItem>
               <ListItemText primary="GPA" secondary={applicant ? applicant.gpa: 'Loading...'} />
             </ListItem>
+            <ListItem>
+              <Box mb={1}>
+                <Typography variant="h4">Why I'm interested in taking 429</Typography>
+                <Typography variant="body1">{applicant ? applicant.whyInterested: 'Loading...'}</Typography>
+              </Box>
+            </ListItem>
           </List>
-          <Box mb={1}>
-            <Typography variant="h2">Why I think I'm right for the job</Typography>
-            <Typography variant="body1">{applicant ? applicant.whyInterested: 'Loading...'}</Typography>
-          </Box>
         </Paper>
       </Container>
     </ThemeProvider>
