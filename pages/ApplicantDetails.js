@@ -98,9 +98,6 @@ const ApplicantDetails = () => {
               <ListItemText primary="Year:" secondary={applicant ? applicant.year: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Rankings:" secondary={applicant ? applicant.rankings.map(section => section).join(', '): 'Loading...'} />
-            </ListItem>
-            <ListItem>
             <ListItemText primary="Class Sections Applied To" secondary={applicant ? applicant.rankings.join(', ') : 'Loading...'} />
             </ListItem>
             <ListItem>
