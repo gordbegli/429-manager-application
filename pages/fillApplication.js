@@ -116,6 +116,7 @@ export default function fillApplication() {
         }
       }
       //If all fields are filled out, we can send the data to firebase
+      alert("Application submitted, you will receive an email when your application is reviewed");
       await setDoc(doc(db, "studentApplications", docName), docData);
     }
     //Otherwise, we just want to move to the next step
