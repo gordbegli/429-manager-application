@@ -98,6 +98,9 @@ const ApplicantDetails = () => {
               <ListItemText primary="GPA" secondary={applicant ? applicant.gpa: 'Loading...'} />
             </ListItem>
             <ListItem>
+            <ListItemText primary="Class Sections Applied To" secondary={applicant ? applicant.rankings.join(', ') : 'Loading...'} />
+            </ListItem>
+            <ListItem>
               <Box mb={1}>
                 <Typography variant="h4">Why I'm interested in taking 429</Typography>
                 <Typography variant="body1">{applicant ? applicant.whyInterested: 'Loading...'}</Typography>
