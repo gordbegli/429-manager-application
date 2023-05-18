@@ -24,8 +24,8 @@ export default function BasicInfoForm({ onFormDataChange }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setFormData({ ...formData, filePath: URL.createObjectURL(file) });
-    onFormDataChange({ ...formData, filePath: URL.createObjectURL(file) });
+    setFormData({ ...formData, filePath: URL.createObjectURL(file), file: file });
+    onFormDataChange({ ...formData, filePath: URL.createObjectURL(file), file: file });
     setUploaded(true);
   }
 

@@ -90,8 +90,9 @@ export default function fillApplication() {
       //Format application data and upload it to Firestore
       //Still need to check that user actually filled out required fields
       //First, need to extract URL from transcript file and upload it to cloud storage
+      console.log(basicInfoFormData)
       const storageRef = ref(storage, 'studentTranscripts/' + basicInfoFormData.email + '.pdf');
-      uploadBytes(storageRef, basicInfoFormData.transcriptFile).then((snapshot) => {
+      uploadBytes(storageRef, basicInfoFormData.file).then((snapshot) => {
         console.log("Uploaded transcript");
       });
       const cloudTranscriptURL = await getDownloadURL(storageRef, {});
