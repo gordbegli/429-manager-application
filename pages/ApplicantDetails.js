@@ -28,7 +28,7 @@ const fetchApplicants = async () => {
       const data = doc.data();
       return { id: doc.id, ...data };
     });
-
+    console.log(applicants)
     return applicants;
   } catch (error) {
     console.error("Error fetching applicants data:", error);
@@ -80,30 +80,33 @@ const ApplicantDetails = () => {
       <Header></Header>
       <Container>
         <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
-          <Typography variant="h2">Applicant Details</Typography>
+          <Typography style={{ marginTop: '20px'}} variant="h4">Applicant Details</Typography>
           <List>
             <ListItem>
-              <ListItemText primary="ID" secondary={applicant ? applicant.id: 'Loading...'} />
+              <ListItemText primary="ID:" secondary={applicant ? applicant.id: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Name" secondary={applicant ? applicant.firstName + " " + applicant.lastName: 'Loading...'} />
+              <ListItemText primary="Name:" secondary={applicant ? applicant.firstName + " " + applicant.lastName: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Email" secondary={applicant ? applicant.email: 'Loading...'} />
+              <ListItemText primary="Email:" secondary={applicant ? applicant.email: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Year" secondary={applicant ? applicant.year: 'Loading...'} />
+              <ListItemText primary="GPA:" secondary={applicant ? applicant.gpa: 'Loading...'} />
             </ListItem>
             <ListItem>
-              <ListItemText primary="GPA" secondary={applicant ? applicant.gpa: 'Loading...'} />
+              <ListItemText primary="Year:" secondary={applicant ? applicant.year: 'Loading...'} />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary="Rankings:" secondary={applicant ? applicant.rankings.map(section => section).join(', '): 'Loading...'} />
             </ListItem>
             <ListItem>
             <ListItemText primary="Class Sections Applied To" secondary={applicant ? applicant.rankings.join(', ') : 'Loading...'} />
             </ListItem>
             <ListItem>
               <Box mb={1}>
-                <Typography variant="h4">Why I'm interested in taking 429</Typography>
-                <Typography variant="body1">{applicant ? applicant.whyInterested: 'Loading...'}</Typography>
+                <Typography variant="h6">Why I'm interested in taking 429:</Typography>
+                <Typography variant="body2">{applicant ? applicant.whyInterested: 'Loading...'}</Typography>
               </Box>
             </ListItem>
           </List>

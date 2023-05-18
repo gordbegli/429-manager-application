@@ -93,26 +93,27 @@ const theme = createTheme({
       <Header/>
       <Container>
         <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
-          <Typography variant="h2">Applicants</Typography>
+          <Typography style={{ marginTop: '20px'}} variant="h4" >Applicants</Typography>
           <TableContainer>
             <Table>
               <TableHead>
-                <TableRow>
+                <TableRow sx={{ fontSize: 50 }}>
                   <TableCell>ID</TableCell>
                   <TableCell>Name</TableCell>
                   <TableCell>Email</TableCell>
-                  <TableCell>Major</TableCell>
                   <TableCell>GPA</TableCell>
+                  <TableCell>Year</TableCell>
+                  <TableCell>Accept / Reject</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {applicants.map((row) => (
                   <TableRow key={row.id}>
-                    <TableCell onClick={() => handleRowClick(row)}>{row.id}</TableCell>
-                    <TableCell onClick={() => handleRowClick(row)}>{row.name}</TableCell>
-                    <TableCell onClick={() => handleRowClick(row)}>{row.email}</TableCell>
-                    <TableCell onClick={() => handleRowClick(row)}>{row.major}</TableCell>
-                    <TableCell onClick={() => handleRowClick(row)}>{row.gpa}</TableCell>
+                    <TableCell sx={{ cursor: 'pointer' }} onClick={() => handleRowClick(row)}>{row.id}</TableCell>
+                    <TableCell sx={{ cursor: 'pointer' }} onClick={() => handleRowClick(row)}>{row.firstName} {row.lastName}</TableCell>
+                    <TableCell sx={{ cursor: 'pointer' }} onClick={() => handleRowClick(row)}>{row.email}</TableCell>
+                    <TableCell sx={{ cursor: 'pointer' }} onClick={() => handleRowClick(row)}>{row.gpa}</TableCell>
+                    <TableCell sx={{ cursor: 'pointer' }} onClick={() => handleRowClick(row)}>{row.year}</TableCell>
                     <TableCell>
                       <Button variant="contained" color="success" onClick={() => handleAccept(row)}>Accept</Button>
                       <Button variant="contained" color="error" onClick={() => handleReject(row)}>Reject</Button>
