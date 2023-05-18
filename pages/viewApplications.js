@@ -23,6 +23,7 @@ import { ref, onValue, child } from "firebase/database";
 import { useRouter } from "next/router";
 import { projectFirestore } from "./firebase.js";
 import { doc, onSnapshot, collection, query, where, getDocs } from "firebase/firestore";
+//import nodemailer from "nodemailer";
 
 import Header from "../components/Header"
 
@@ -36,6 +37,10 @@ const theme = createTheme({
     },
   },
 });
+
+
+
+// ... other
 
   const fetchApplicants = async () => {
     try {
@@ -77,7 +82,7 @@ const theme = createTheme({
 
     const handleAccept = (applicant) => {
       console.log("Test");
-    }
+    };
 
     const handleReject = (applicant) => {
       console.log("Test");

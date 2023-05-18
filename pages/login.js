@@ -8,14 +8,15 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Box from '@material-ui/core/Box';
-import TextField from "material-ui/TextField";
-import { MuiThemeProvider } from "material-ui/styles";
+import TextField from "@mui/material/TextField";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Grid, Paper, AppBar, Toolbar, IconButton } from '@mui/material';
 import styles from './login.module.css';
 import Image from 'next/image';;
 import { Alert } from '@mui/material';
+import { red } from '@mui/material/colors';
 
 function CustomDialog({ open, onClose, onConfirm, dialogError}) {
   const [password, setPassword] = useState('');
@@ -28,6 +29,18 @@ function CustomDialog({ open, onClose, onConfirm, dialogError}) {
       passwordRef.current.focus();
     }
   }, [open]);
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#990000", // UMass Red
+      },
+      background: {
+        default: "#ffffff",
+      },
+    },
+  });
+  
 
   useEffect(() => {
     if (dialogError) {
@@ -43,7 +56,7 @@ function CustomDialog({ open, onClose, onConfirm, dialogError}) {
   };
     
   return (
-    <MuiThemeProvider>
+    <ThemeProvider theme={theme}>
       <Dialog open={open} onClose={onClose} ref = {dialogRef}>
         <DialogTitle>Please enter the password</DialogTitle>
         <DialogContent>
@@ -85,7 +98,7 @@ function CustomDialog({ open, onClose, onConfirm, dialogError}) {
           </Button>
         </DialogActions>
         </Dialog>
-      </MuiThemeProvider>
+      </ThemeProvider>
   );
 }
 
