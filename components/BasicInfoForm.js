@@ -24,8 +24,19 @@ export default function BasicInfoForm({ onFormDataChange }) {
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setFormData({ ...formData, filePath: URL.createObjectURL(file), file: file });
-    onFormDataChange({ ...formData, filePath: URL.createObjectURL(file), file: file });
+
+    let reader = new FileReader()
+    let viewPdf = ""
+    reader.readAsDataURL(file)
+    reader.onload = (e) => {
+      viewPdf = e.target.result
+      setFormData({ ...formData, filePath: URL.createObjectURL(file), file: file, viewPdf: viewPdf });
+      onFormDataChange({ ...formData, filePath: URL.createObjectURL(file), file: file, viewPdf: viewPdf });
+    }
+
+    console.log(viewPdf)
+    setFormData({ ...formData, filePath: URL.createObjectURL(file), file: file, viewPdf: viewPdf });
+    onFormDataChange({ ...formData, filePath: URL.createObjectURL(file), file: file, viewPdf: viewPdf });
     setUploaded(true);
   }
 
