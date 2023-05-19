@@ -3,4 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-module.exports = nextConfig
+module.exports =  {
+  nextConfig,
+  pages: ["pages/index.js", "pages/api/sendEmail.js"],
+};

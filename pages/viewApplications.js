@@ -23,9 +23,10 @@ import { ref, onValue, child } from "firebase/database";
 import { useRouter } from "next/router";
 import { projectFirestore } from "./firebase.js";
 import { doc, onSnapshot, collection, query, where, getDocs } from "firebase/firestore";
-//import nodemailer from "nodemailer";
 
 import Header from "../components/Header"
+import { Password } from "@mui/icons-material";
+import axios from "axios";
 
 const theme = createTheme({
   palette: {
@@ -37,7 +38,6 @@ const theme = createTheme({
     },
   },
 });
-
 
 
 // ... other
@@ -80,13 +80,23 @@ const theme = createTheme({
       router.push(`./ApplicantDetails?id=${applicant.id}`);
     };
 
-    const handleAccept = (applicant) => {
-      console.log("Test");
+    const handleAccept = async (applicant) => {
+     try {
+      await axios.post("/api/sendEmail", applicant);
+      console.log("Email sent.");
+     } catch (error) {
+      console.log("Error sending email.");
+     }
     };
 
-    const handleReject = (applicant) => {
-      console.log("Test");
-    }
+    const handleReject = async (applicant) => {
+      try {
+        await axios.post("/api/sendRejectionEmail", applicant);
+        console.log("Email sent.");
+       } catch (error) {
+        console.log("Error sending email.");
+       }
+    };
 
   return (
     <ThemeProvider theme={theme}>
